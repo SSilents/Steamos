@@ -1,5 +1,23 @@
 {
   "dependencies": {
-    "bootstrap": "^5.3.3"
-  }
+    "bootstrap": "^5.3.3",
+    "express": "^4.21.2"
+  },
+  "name": "steamos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SSilents/Steamos.git"
+  },
+  "author": "louis.appleyard@durham.ac.uk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SSilents/Steamos/issues"
+  },
+  "homepage": "https://github.com/SSilents/Steamos#readme"
 }
