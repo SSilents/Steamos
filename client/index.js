@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('content').innerHTML = body;
         } catch (error) {
             console.error('Fetch error:', error);
+            document.getElementById('error-message').innerText = 'Failed to fetch data from the server. Please try again later.';
+            document.getElementById('error-message').style.display = 'block';
         }
     });
 });
