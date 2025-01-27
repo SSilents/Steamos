@@ -21,5 +21,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('error-message').style.display = 'block';
             }
         }
+
+        if (event.target && event.target.closest('.nav-link.home')) {
+            console.log('Home button clicked'); // Debugging log
+            try {
+                let response = await fetch('/homepage');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                let data = await response.text();
+                document.getElementById('content').innerHTML = data;
+            } catch (error) {
+                console.error('Fetch error:', error);
+                document.getElementById('error-message').innerText = 'Failed to fetch data from the server. Please try again later.';
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
     });
 });
