@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => console.error('Error fetching homepage:', error));
     document.addEventListener('click', async function(event) {
-        if (event.target && event.target.closest('#bookgigbutton')) {
+        if (event.target && event.target.closest('#bookgigpage')) {
             console.log('Book gig button clicked');
             try {
                 let response = await fetch('/requestform');

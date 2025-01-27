@@ -10,11 +10,6 @@ app.get('/', function(req, resp){
   resp.send('Hello world')
 })
 
-let instruments = [ 'piano', 'concertina', 'double bass'];
-
-app.get('/list', function (req, resp){
-    resp.send(instruments);
-});
 
 app.get('/homepage', function(req, resp) {
   resp.sendFile(__dirname + '/client/homepage.html');
