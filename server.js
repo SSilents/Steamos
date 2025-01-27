@@ -19,5 +19,8 @@ app.get('/list', function (req, resp){
 app.get('/homepage', function(req, resp) {
   resp.sendFile(__dirname + '/client/homepage.html');
 });
+app.get('/requestform', function(req, resp) {
+  resp.sendFile(__dirname + '/client/requestform.html');
+});
 
 app.listen(8090)

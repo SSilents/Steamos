@@ -5,18 +5,21 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('content').innerHTML = data;
     })
     .catch(error => console.error('Error fetching homepage:', error));
-    document.getElementById('bookgigbutton').addEventListener('click', async function(event) {
-        try {
-            let response = await fetch('http://127.0.0.1:8090/list');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+    document.addEventListener('click', async function(event) {
+        if (event.target && event.target.closest('#bookgigbutton')) {
+            console.log('Book gig button clicked');
+            try {
+                let response = await fetch('/requestform');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                let data = await response.text();
+                document.getElementById('content').innerHTML = data;
+            } catch (error) {
+                console.error('Fetch error:', error);
+                document.getElementById('error-message').innerText = 'Failed to fetch data from the server. Please try again later.';
+                document.getElementById('error-message').style.display = 'block';
             }
-            let body = await response.text();
-            document.getElementById('content').innerHTML = body;
-        } catch (error) {
-            console.error('Fetch error:', error);
-            document.getElementById('error-message').innerText = 'Failed to fetch data from the server. Please try again later.';
-            document.getElementById('error-message').style.display = 'block';
         }
     });
 });
