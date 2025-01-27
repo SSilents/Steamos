@@ -14,6 +14,17 @@
         height: 100%;
         z-index: 1;
       }
+      #carouselSteamosPictures .carousel-inner {
+        height: 100vh; /* Full viewport height */
+      }
+      #carouselSteamosPictures .carousel-item {
+        height: 100vh; /* Full viewport height */
+      }
+      #carouselSteamosPictures .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the image covers the entire area */
+      }
       #content, #error-message, nav, #bookgigbutton {
         position: relative;
         z-index: 2;
@@ -31,26 +42,26 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link home active" aria-current="page" href="#">Home</a>
+                <a class="nav-link home active" aria-current="page" href="">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Music</a>
+                <a class="nav-link music active" aria-current="page" href="">Music</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      <div id="background" style="position: absolute;">
+      <div id="background" style="position: absolute; height: 100%;">
         <div id="carouselSteamosPictures" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="false" style="filter:brightness(50%)" style="position: relative;">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="assets/Img/Steamos1.jpeg" class="d-block w-100" alt="...">
+                  <img src="assets/Img/Steamos1.jpeg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="assets/Img/Steamos2.jpeg" class="d-block w-100" alt="...">
+                <img src="assets/Img/Steamos2.jpeg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="assets/Img/Steamos3.jpeg" class="d-block w-100" alt="...">
+                <img src="assets/Img/Steamos3.jpeg" class="d-block w-100" alt="...">
             </div>
           </div>
         </div>

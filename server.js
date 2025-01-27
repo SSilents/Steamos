@@ -22,5 +22,7 @@ app.get('/homepage', function(req, resp) {
 app.get('/requestform', function(req, resp) {
   resp.sendFile(__dirname + '/client/requestform.html');
 });
-
+app.get('/music', function(req, resp) {
+  resp.sendFile(__dirname + '/client/music.html');
+});
 app.listen(8090)
