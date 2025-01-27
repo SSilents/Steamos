@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    fetch('/homepage')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('content').innerHTML = data;
+    })
+    .catch(error => console.error('Error fetching homepage:', error));
     document.getElementById('bookgigbutton').addEventListener('click', async function(event) {
         try {
             let response = await fetch('http://127.0.0.1:8090/list');

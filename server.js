@@ -16,4 +16,8 @@ app.get('/list', function (req, resp){
     resp.send(instruments);
 });
 
+app.get('/homepage', function(req, resp) {
+  resp.sendFile(__dirname + '/client/homepage.html');
+});
+
 app.listen(8090)
