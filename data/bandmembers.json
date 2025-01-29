@@ -1,0 +1,27 @@
+[
+    {
+        "name":"",
+        "instrument":"",
+        "description":"",
+        "image":"assets/Img/test.jpeg"
+    },
+    {
+        "name":"Louis Appleyard",
+        "instrument":"Keyboard",
+        "description":"The bands secretary, Louis' favourite band is Seb Lowe",
+        "image":"assets/Img/Louis.png"
+    },
+    
+    {
+        "name":"Sakura Doody",
+        "instrument":"Bass",
+        "description":"Basically an exec member, Sakura loves cats",
+        "image":"assets/Img/Sakura.png"
+    },
+    {
+        "name":"test",
+        "instrument":"test",
+        "description":"test",
+        "image":"assets/Img/test.jpeg"
+    }
+]

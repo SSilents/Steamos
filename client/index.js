@@ -102,6 +102,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 let data = await response.text();
                 document.getElementById('content').innerHTML = data;
                 document.getElementById('error-message').style.display = 'none';
+
+                response = await fetch('/api/bandmembers');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                let bandMembers = await response.json();
+                const bandContent = document.getElementById('bandcontent');
+                bandContent.innerHTML = ''; // Clear previous content
+                bandMembers.forEach(member => {
+                    const memberDiv = document.createElement('div');
+                    memberDiv.style.color = 'white';
+                    memberDiv.classList.add('col-12', 'col-md-6', 'col-lg-4', 'mb-4');
+                    memberDiv.innerHTML = `
+                        <p><strong>Name:</strong> ${member.name}</p>
+                        <p><strong>Instrument:</strong> ${member.instrument}</p>
+                        <p><strong>Bio:</strong> ${member.description}</p>
+                        <img src="${member.image}" alt="${member.name}" width="200" height="200">
+                        <hr>
+                    `;
+                    bandContent.appendChild(memberDiv);
+                });
+
+
             } catch (error) {
                 console.error('Fetch error:', error);
                 document.getElementById('error-message').innerText = 'Failed to fetch data from the server. Please try again later.';

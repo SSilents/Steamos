@@ -70,5 +70,14 @@
     "endTime": "20:00",
     "address": "stevo",
     "extraInfo": ""
+  },
+  {
+    "name": "Louis Appleyard",
+    "email": "louisappleyard@icloud.com",
+    "date": "20205-01-30",
+    "startTime": "09:00",
+    "endTime": "17:00",
+    "address": "My house",
+    "extraInfo": ""
   }
 ]

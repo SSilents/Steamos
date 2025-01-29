@@ -10,7 +10,7 @@ app.use(cors())
 
 app.use(express.static('client'));
 
-let enquiryData = require('./data/enquiries.json');
+
 
 
 
@@ -26,6 +26,23 @@ app.get('/music', function(req, resp) {
 app.get('/admin', function(req, resp) {
   resp.sendFile(__dirname + '/client/admin.html');
 });
+
+app.get('/api/bandmembers', function(req, resp) {
+  fs.readFile('./data/bandmembers.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      return resp.status(500).json({ message: 'Internal server error' });
+    }
+    try {
+      const bandMembers = JSON.parse(data);
+      resp.json(bandMembers);
+    } catch (e) {
+      console.error('Error parsing JSON:', e);
+      resp.status(500).json({ message: 'Internal server error' });
+    }
+  });
+});
+
 
 app.get('/api/enquiries/monthyear', function(req, resp) {
   const {month, year} = req.query;
