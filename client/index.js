@@ -50,6 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             }   
                             let result = await response.text();
                             console.log(result.message)
+
+                            const successMessage = document.getElementById('successmessage');
+                            successMessage.style.display = 'block';
+                            successMessage.innerText = 'Enquiry has been sent';
+                            form.reset();
+
+
                             document.getElementById('error-message').style.display = 'none'; // Hide error message on success
                         } catch (error) {
                             console.error('Fetch error:', error);
