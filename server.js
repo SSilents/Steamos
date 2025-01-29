@@ -10,6 +10,8 @@ app.use(cors())
 
 app.use(express.static('client'));
 
+let enquiryData = require('./data/enquiries.json');
+
 
 
 app.get('/homepage', function(req, resp) {
@@ -20,6 +22,50 @@ app.get('/requestform', function(req, resp) {
 });
 app.get('/music', function(req, resp) {
   resp.sendFile(__dirname + '/client/music.html');
+});
+app.get('/admin', function(req, resp) {
+  resp.sendFile(__dirname + '/client/admin.html');
+});
+
+app.get('/api/enquiries/monthyear', function(req, resp) {
+  const {month, year} = req.query;
+  fs.readFile('./data/enquiries.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      return resp.status(500).json({ message: 'Internal server error' });
+    }
+
+    let enquiries = [];
+    if (data) {
+      try {
+        enquiries = JSON.parse(data);
+        if (!Array.isArray(enquiries)) {
+          enquiries = [];
+        }
+      } catch (e) {
+        console.error('Error parsing JSON:', e);
+        enquiries = [];
+      }
+    }
+
+    const filteredEnquiries = enquiries.filter(enquiry => {
+      const enquiryDate = new Date(enquiry.date);
+      return enquiryDate.getMonth() + 1 === parseInt(month) && enquiryDate.getFullYear() === parseInt(year);
+    });
+
+
+    filteredEnquiries.sort((a, b) => {
+      const dateComparison = new Date(a.date) - new Date(b.date);
+      if (dateComparison !== 0) {
+        return dateComparison;
+      }
+      const startTimeA = new Date(`01/01/2000 ${a.startTime}`);
+      const startTimeB = new Date(`01/01/2000 ${b.startTime}`);
+      return startTimeA - startTimeB;
+    });
+    
+    resp.json(filteredEnquiries);
+});
 });
 
 app.post('/api/submitform', function(req, resp) {
