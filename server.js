@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const fs = require('fs')
 const app = express()
 
 app.use(express.json());
@@ -38,7 +39,49 @@ app.post('/api/submitform', function(req, resp) {
   console.log('Address:', address);
   console.log('Extra Info:', extraInfo);
   
-  resp.json(200);
+fs.readFile('./data/enquiries.json', 'utf8', function(err, data) {
+  if (err) {
+    console.error('Error reading file:', err);
+    return resp.status(500).json({ message: 'Internal server error' });
+  }
+
+  let enquiries = [];
+  if (data) {
+    try {
+      enquiries = JSON.parse(data);
+      if (!Array.isArray(enquiries)) {
+        enquiries = [];
+      }
+    } catch (e) {
+      console.error('Error parsing JSON:', e);
+      enquiries = [];
+    }
+  }
+
+  const newEnquiry = {
+    name: name,
+    email: email,
+    date: date,
+    startTime: startTime,
+    endTime: endTime,
+    address: address,
+    extraInfo: extraInfo
+  };
+  enquiries.push(newEnquiry);
+
+  fs.writeFile('./data/enquiries.json', JSON.stringify(enquiries, null, 2), (err) => {
+    if (err) {
+      console.error('Error writing file:', err);
+      return resp.status(500).json({ message: 'Internal server error' });
+    }
+
+    resp.sendStatus(200);;
+  });
+  
+});
+
+
+
 });
 
 app.listen(8090)
