@@ -123,6 +123,52 @@ document.addEventListener('DOMContentLoaded', function() {
                     `;
                     bandContent.appendChild(memberDiv);
                 });
+                console.log('searching for music data')
+                response = await fetch('/api/music');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                let musicData = await response.json();
+                const musicContent = document.getElementById('musiccontent');
+                const genreFilter = document.getElementById('genreFilter');
+                const genres = new Set(musicData.map(music => music.genre));
+                genres.forEach(genre => {
+                    const option = document.createElement('option');
+                    option.value = genre;
+                    option.textContent = genre;
+                    genreFilter.appendChild(option);
+                });
+
+                const displayMusic = (musicData) => {
+                    musicContent.innerHTML = '';
+                    musicData.forEach(music => {
+                        const musicDiv = document.createElement('div');
+                        musicDiv.classList.add('col-12', 'col-md-6', 'col-lg-4', 'mb-4'); 
+                        musicDiv.innerHTML = `
+                            <div class="card bg-dark text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">${music.title}</h5>
+                                    <p class="card-text"><strong>Artist:</strong> ${music.artist}</p>
+                                    <p class="card-text"><strong>Genre:</strong> ${music.genre}</p>
+                                </div>
+                            </div>
+                        `;
+                        musicContent.appendChild(musicDiv);
+                    });
+                };
+
+                displayMusic(musicData);
+
+                genreFilter.addEventListener('change', () => {
+                    console.log('Genre filter changed:', genreFilter.value);
+                    const selectedGenre = genreFilter.value;
+                    if (selectedGenre === 'all') {
+                        displayMusic(musicData);
+                    } else {
+                        const filteredMusic = musicData.filter(music => music.genre === selectedGenre);
+                        displayMusic(filteredMusic);
+                    }
+                });
 
 
             } catch (error) {

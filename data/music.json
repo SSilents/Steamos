@@ -1,0 +1,32 @@
+[
+    {
+        "title":"Song1",
+        "artist":"Aritst1",
+        "genre":"Genre1"
+    },
+    {
+        "title":"Song2",
+        "artist":"Aritst2",
+        "genre":"Genre2"
+    },
+    {
+        "title":"Song3",
+        "artist":"Aritst3",
+        "genre":"Genre1"
+    },
+    {
+        "title":"Song4",
+        "artist":"Aritst3",
+        "genre":"Genre2"
+    },
+    {
+        "title":"Song5",
+        "artist":"Aritst2",
+        "genre":"Genre1"
+    },
+    {
+        "title":"Song6",
+        "artist":"Aritst1",
+        "genre":"Genre2"
+    }
+]
